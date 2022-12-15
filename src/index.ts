@@ -12,10 +12,10 @@ type Node = InterfaceTypeExtensionNode | ObjectTypeDefinitionNode;
 type BuildArgumentsBlockFunction = (node: Node) => string;
 
 interface FieldNode extends FieldDefinitionNode {
-  convertedName: string
+  convertedName: string;
 }
 
-type FieldNameMap = { [name: string]: FieldNode }
+type FieldNameMap = { [name: string]: FieldNode };
 
 interface NodeForArgsMapping {
   nameToFieldsMap: FieldNameMap;
@@ -32,22 +32,20 @@ export const plugin: PluginFunction<Config> = (schema, _documents, config) => {
 
   const nodes: Array<NodeForArgsMapping> = [];
   const buildArgumentsBlock: BuildArgumentsBlockFunction = function (node) {
-    const nameToFieldsMap =
-      node.fields
-        .filter((field) => field.arguments && field.arguments.length > 0)
-        .map((field) => ({
-          ...field,
-          convertedName: this.convertName(field, {
-            useTypesPrefix: false,
-            transformUnderscore: true,
-          }),
-        })).reduce((acc: FieldNameMap, curr) => {
-          const name = curr.name.value
-          acc[name] = curr
-          return acc
-        }, {})
-
-
+    const nameToFieldsMap = node.fields
+      .filter((field) => field.arguments && field.arguments.length > 0)
+      .map((field) => ({
+        ...field,
+        convertedName: this.convertName(field, {
+          useTypesPrefix: false,
+          transformUnderscore: true,
+        }),
+      }))
+      .reduce((acc: FieldNameMap, curr) => {
+        const name = curr.name.value;
+        acc[name] = curr;
+        return acc;
+      }, {});
 
     const onlyTypeNames = config.mapArgsOnlyForTypeNames || [];
     if (onlyTypeNames.includes(node.name.value) || !onlyTypeNames.length) {
@@ -70,7 +68,7 @@ export const plugin: PluginFunction<Config> = (schema, _documents, config) => {
         `export type ${nodeName}Args = {`,
         ...originalNode.fields.map((field) => {
           const hasArgs = !!field.arguments.length;
-          const mappedField = nameToFieldsMap[field.name.value]
+          const mappedField = nameToFieldsMap[field.name.value];
           const mappedType = hasArgs
             ? `${nodeName}${mappedField.convertedName}Args`
             : "{}";
