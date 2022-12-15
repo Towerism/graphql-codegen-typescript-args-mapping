@@ -1,0 +1,54 @@
+{
+  "name": "graphql-codegen-typescript-args-mapping",
+  "version": "1.1.0",
+  "description": "Graphql codegen plugin togenerate args mapping",
+  "packageManager": "yarn@3.2.4",
+  "source": "src/index.ts",
+  "main": "dist/main.js",
+  "types": "dist/types/index.d.ts",
+  "context": "node",
+  "repository": "github:towerism/graphql-codegen-typescript-args-mapping",
+  "scripts": {
+    "watch": "parcel watch",
+    "build": "npm run build:dist",
+    "build:dist": "parcel build",
+    "test": "ava",
+    "lint": "eslint --cache --max-warnings 0 --ext .ts --ignore-path .gitignore .",
+    "postinstall": "husky install",
+    "prepublishOnly": "pinst --disable",
+    "postpublish": "pinst --enable"
+  },
+  "keywords": [],
+  "author": "Martin Fracker <martin.frackerjr@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@graphql-tools/apollo-engine-loader": "^7.3.21",
+    "@parcel/packager-ts": "2.8.1",
+    "@parcel/transformer-typescript-types": "2.8.1",
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
+    "ava": "^4.3.3",
+    "eslint": "latest",
+    "graphql": "^16.6.0",
+    "husky": ">=6",
+    "lint-staged": "^13.0.3",
+    "parcel": "^2.8.1",
+    "pinst": ">=2",
+    "prettier": "^2.7.1",
+    "typescript": "4.7.x"
+  },
+  "browserslist": [
+    "defaults and supports es6-module",
+    "maintained node versions"
+  ],
+  "lint-staged": {
+    "*.{ts,md,yml}": "prettier --write",
+    "*.ts": "eslint --cache --fix"
+  },
+  "dependencies": {
+    "@graphql-codegen/plugin-helpers": "^3.1.1",
+    "@graphql-codegen/schema-ast": "^2.6.0",
+    "@graphql-codegen/typescript": "^2.8.5",
+    "@graphql-codegen/visitor-plugin-common": "^2.13.5"
+  }
+}

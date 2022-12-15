@@ -1,0 +1,14 @@
+/node_modules
+/lib/*
+!/lib/TrinoParser.g4
+!/lib/TrinoLexer.g4
+/dist
+/.parcel-cache
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.eslintcache
