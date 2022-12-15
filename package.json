@@ -1,6 +1,6 @@
 {
   "name": "graphql-codegen-typescript-args-mapping",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "description": "Graphql codegen plugin togenerate args mapping",
   "packageManager": "yarn@3.2.4",
   "source": "src/index.ts",
